@@ -65,7 +65,7 @@ public class SqlLite {
         System.out.println(query);
         try {
             statement.executeUpdate(query);
-
+            
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -103,5 +103,12 @@ public class SqlLite {
         }
         return votes;
     }
-
+   public void updateVotes(int id){
+       String query="UPDATE votes set syn = 'yes' where id=+"+id+";";
+        try {
+            statement.executeUpdate(query);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+   }
 }

@@ -29,7 +29,7 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#d01r01s01_click" prefHeight="95.0" prefWidth="291.0" text="D01R01S01">
+                                    <Button mnemonicParsing="false" onAction="#d01r01s01_click" prefHeight="73.0" prefWidth="300.0" text="D01R01S01">
                                        <font>
                                           <Font name="Arial Unicode MS" size="30.0" />
                                        </font>

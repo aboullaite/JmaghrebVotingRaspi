@@ -11,10 +11,10 @@
   </resources>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="JmaghrebVoting.jar" size="229183" download="eager" />
-    <jar href="lib/controlsfx-8.0.5.jar" size="812625" download="eager" />
+    <jar href="JmaghrebVoting.jar" size="229772" download="eager" />
+    <jar href="lib/controlsfx-8.0.5.jar" size="812623" download="eager" />
     <jar href="lib/pi4j-core.jar" size="188203" download="eager" />
-    <jar href="lib/sqlite-jdbc-3.7.2.jar" size="3218789" download="eager" />
+    <jar href="lib/sqlite-jdbc-3.7.2.jar" size="3218790" download="eager" />
   </resources>
 <security>
   <all-permissions/>

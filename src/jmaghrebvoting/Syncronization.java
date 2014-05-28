@@ -35,7 +35,7 @@ public class Syncronization extends TimerTask{
        votes.stream().forEach((vote) -> {
             try {
                 
-                String savevotesurl = "http://intense-mountain-7337.herokuapp.com/idSession/" + vote.getIdSession() + "/idVoter/" + URLEncoder.encode(vote.getIdVoter(),"UTF-8") + "/vote/" + vote.getVote() + "/time/" + URLEncoder.encode(vote.getTime().toString(),"UTF-8")+"";
+                String savevotesurl = "http://jmaghrebvoting.herokuapp.com/idSession/" + vote.getIdSession() + "/idVoter/" + URLEncoder.encode(vote.getIdVoter(),"UTF-8") + "/vote/" + vote.getVote() + "/time/" + URLEncoder.encode(vote.getTime().toString(),"UTF-8")+"";
                 
                 URL url = new URL(savevotesurl);
                 URLConnection urlConnection = url.openConnection();
@@ -45,15 +45,16 @@ public class Syncronization extends TimerTask{
                 String line = in.readLine();
                 
                 if (line.equals("Done")) {
-                    vote.setSyn("yes");
+                    db.connect();
+                    db.updateVotes(vote.getId());
+                    db.close();
                 }
                 in.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-         votes.stream().forEach((vote) -> {
-             System.out.println(vote.toString());
-         });
+        
+      
     }   
 }

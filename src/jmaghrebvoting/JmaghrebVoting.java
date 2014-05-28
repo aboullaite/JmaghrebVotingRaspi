@@ -8,7 +8,9 @@ package jmaghrebvoting;
 import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalInput;
+import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.PinPullResistance;
+import com.pi4j.io.gpio.PinState;
 import com.pi4j.io.gpio.RaspiPin;
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
@@ -41,8 +43,9 @@ public class JmaghrebVoting extends Application {
     final GpioPinDigitalInput voteButton1 = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, PinPullResistance.PULL_DOWN);
     final GpioPinDigitalInput voteButton2 = gpio.provisionDigitalInputPin(RaspiPin.GPIO_03, PinPullResistance.PULL_DOWN);
     final GpioPinDigitalInput voteButton3 = gpio.provisionDigitalInputPin(RaspiPin.GPIO_04, PinPullResistance.PULL_DOWN);
-
-    // Application Views
+    final GpioPinDigitalOutput ledPin =  gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, PinState.LOW); // Application Views
+    
+    //App Screens
     public static String sessionId = "Default";
     public static String screen1ID = "welcome";
     public static String screen1File = "WelcomeScreen.fxml";
@@ -109,8 +112,11 @@ public class JmaghrebVoting extends Application {
                                 public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
                                     // display vote on console
                                     if (event.getState().isHigh()) {
+                                        ledPin.setState(PinState.HIGH);
                                         onVote(login, "A");
+                                        
                                     }
+                                    else ledPin.setState(PinState.LOW);
 
                                 }
 
@@ -119,8 +125,12 @@ public class JmaghrebVoting extends Application {
                                 @Override
                                 public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
                                     // display vote on console
-                                    onVote(login, "B");
-
+                                    if (event.getState().isHigh()) {
+                                        ledPin.setState(PinState.HIGH);
+                                        onVote(login, "B");
+                                     
+                                    } else ledPin.setState(PinState.LOW);
+                                
                                 }
 
                             });
@@ -130,8 +140,10 @@ public class JmaghrebVoting extends Application {
 
                                     // display vote on console
                                     if (event.getState().isHigh()) {
+                                        ledPin.setState(PinState.HIGH);
                                         onVote(login, "C");
-                                    }
+                                        
+                                    } else ledPin.setState(PinState.LOW);
 
                                 }
 
